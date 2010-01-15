@@ -1,5 +1,5 @@
 %define upstream_name    Dist-Zilla-Plugin-CriticTests
-%define upstream_version 0.1.0
+%define upstream_version 1.100140
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
@@ -16,6 +16,7 @@ BuildRequires: perl(English)
 BuildRequires: perl(File::Find::Rule)
 BuildRequires: perl(Moose)
 BuildRequires: perl(Test::More)
+
 BuildArch: noarch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
 
@@ -32,16 +33,15 @@ This plugin does not accept any option yet.
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
-
-%{make}
+%{__perl} Build.PL installdirs=vendor
+./Build
 
 %check
-%{make} test
+./Build test
 
 %install
-rm -rf %buildroot
-%makeinstall_std
+%{__rm} -rf %{buildroot}
+./Build install destdir=%{buildroot}
 
 %clean
 rm -rf %buildroot
@@ -51,5 +51,3 @@ rm -rf %buildroot
 %doc Changes LICENSE README
 %{_mandir}/man3/*
 %perl_vendorlib/*
-
-
