@@ -16,6 +16,7 @@ BuildRequires: perl(English)
 BuildRequires: perl(File::Find::Rule)
 BuildRequires: perl(Moose)
 BuildRequires: perl(Test::More)
+BuildRequires: perl(Module::Build)
 
 BuildArch: noarch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
