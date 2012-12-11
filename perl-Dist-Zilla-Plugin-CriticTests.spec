@@ -1,25 +1,25 @@
 %define upstream_name    Dist-Zilla-Plugin-CriticTests
 %define upstream_version 1.102280
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	3
 
-Summary:    Tests to check your code against best practices
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Dist/%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	Tests to check your code against best practices
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Dist/%{upstream_name}-%{upstream_version}.tar.gz
 
-BuildRequires: perl(Dist::Zilla::Plugin::InlineFiles)
-BuildRequires: perl(English)
-BuildRequires: perl(File::Find::Rule)
-BuildRequires: perl(Moose)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(Module::Build)
+BuildRequires:	perl-devel
+BuildRequires:	perl(Dist::Zilla::Plugin::InlineFiles)
+BuildRequires:	perl(English)
+BuildRequires:	perl(File::Find::Rule)
+BuildRequires:	perl(Moose)
+BuildRequires:	perl(Test::More)
+BuildRequires:	perl(Module::Build)
 
-BuildArch: noarch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildArch:	noarch
 
 %description
 This is an extension of the Dist::Zilla::Plugin::InlineFiles manpage,
@@ -34,21 +34,17 @@ This plugin does not accept any option yet.
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Build.PL installdirs=vendor
+perl Build.PL installdirs=vendor
 ./Build
 
 %check
 ./Build test
 
 %install
-%{__rm} -rf %{buildroot}
 ./Build install destdir=%{buildroot}
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
 %doc Changes LICENSE README
 %{_mandir}/man3/*
-%perl_vendorlib/*
+%{perl_vendorlib}/*
+
