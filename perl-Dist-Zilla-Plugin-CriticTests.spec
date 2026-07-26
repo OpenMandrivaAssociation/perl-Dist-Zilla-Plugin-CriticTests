@@ -1,15 +1,13 @@
 %define upstream_name    Dist-Zilla-Plugin-CriticTests
-%define upstream_version 1.102280
-
 Name:		perl-%{upstream_name}
-Version:	%{upstream_version}
-Release:	6
+Version:	1.102280
+Release:	7
 
 Summary:	Tests to check your code against best practices
 License:	GPL+ or Artistic
 Group:		Development/Perl
 Url:		https://metacpan.org/dist/Dist-Zilla-Plugin-CriticTests
-Source0:	http://www.cpan.org/modules/by-module/Dist/%{upstream_name}-%{upstream_version}.tar.gz
+Source0:	http://www.cpan.org/modules/by-module/Dist/%{upstream_name}-%{version}.tar.gz
 
 BuildRequires:	perl-devel
 BuildRequires:	perl(Dist::Zilla::Plugin::InlineFiles)
@@ -31,7 +29,7 @@ providing the following files:
 This plugin does not accept any option yet.
 
 %prep
-%setup -q -n %{upstream_name}-%{upstream_version}
+%setup -q -n %{upstream_name}-%{version}
 
 %build
 perl Build.PL installdirs=vendor
